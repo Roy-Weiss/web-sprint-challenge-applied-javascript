@@ -36,7 +36,7 @@ const cards = document.querySelector(".cards-container")
     console.log(err)
 })
 
-function cardMaker(data)
+function cardMaker(data) {
     let {authorName, authorPhoto, headline, id} = data
     const card = document.createElement("div")
     card.classList.add("card")
@@ -61,5 +61,6 @@ function cardMaker(data)
     })
 
     return card
+}
 
     
