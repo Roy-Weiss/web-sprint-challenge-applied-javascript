@@ -48,16 +48,15 @@ function cardMaker(data) {
     const image = document.createElement("div")
     image.classList.add("img-container")
     image.src = authorPhoto
-    const div = document.createElement("div")
-    const spanThing = document.createElement("span")
-    spanThing.textContent = `By ${authorName}`
+    const span = document.createElement("span")
+    span.textContent = `By ${authorName}`
 
     card.append(title)
     card.append(person)
     card.append(image)
-    card.append(spanThing)
+    card.append(span)
     card.addEventListener("click", (event) => {
-        console.log(`${headline}`)
+        console.log(headline)
     })
 
     return card
