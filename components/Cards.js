@@ -26,10 +26,21 @@ import axios from "axios"
 const cards = document.querySelector(".cards-container")
     axios.get("https://lambda-times-api.herokuapp.com/articles")
     .then(stuff => {
-        const card = document.createElement("div")
-        card.classList.add("cards-container")
-        card.textContent = Element
-        cards.append(cardMaker(stuff.data))
+      stuff.data.articles.bootstrap.forEach(element => {
+          cards.append(cardMaker(element))
+      })
+      stuff.data.articles.javascript.forEach(element => {
+          cards.append(cardMaker(element))
+      })
+      stuff.data.articles.jquery.forEach(element => {
+          cards.append(cardMaker(element))
+      })
+      stuff.data.articles.node.forEach(element => {
+          cards.append(cardMaker(element))
+      })
+      stuff.data.articles.technology.forEach(element => {
+          cards.append(cardMaker(element))
+      })
 })
 
 .catch(err => {
@@ -37,16 +48,18 @@ const cards = document.querySelector(".cards-container")
 })
 
 function cardMaker(data) {
-    let {authorName, authorPhoto, headline, id} = data
+    console.log(data)
+    let {authorName, authorPhoto, headline} = data
     const card = document.createElement("div")
     card.classList.add("card")
     const title = document.createElement("div")
     title.classList.add("headline")
-    title.textContent = `${headline}`
+    title.textContent = headline
     const person = document.createElement("div")
     person.classList.add("author")
-    const image = document.createElement("div")
-    image.classList.add("img-container")
+    const imageHolder = document.createElement("div")
+    imageHolder.classList.add("img-container")
+    const image = document.createElement("img")
     image.src = authorPhoto
     const span = document.createElement("span")
     span.textContent = `By ${authorName}`
@@ -54,6 +67,7 @@ function cardMaker(data) {
     card.append(title)
     card.append(person)
     card.append(image)
+    card.append(imageHolder)
     card.append(span)
     card.addEventListener("click", (event) => {
         console.log(headline)
